@@ -1,0 +1,60 @@
+<div class="container d-table">
+  <div class="d-100vh-va-middle">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card p-2" *ngIf="splash">
+          <div class="card-block">
+            <h1>Entrando...</h1>
+          </div>
+        </div>
+        <div class="card-group" *ngIf="!splash">
+          <div class="card p-2">
+            <div class="card-block">
+              <h1>Login</h1>
+              <form [formGroup]="myForm" (ngSubmit)="login()">
+                <p class="text-muted">Entre com a sua conta</p>
+                <div class="input-group mb-1">
+                  <span class="input-group-addon"><i class="icon-user"></i></span>
+                  <input type="text" class="form-control" formControlName="email" placeholder="Usuário">
+                </div>
+                <div class="input-group mb-2">
+                  <span class="input-group-addon"><i class="icon-lock"></i></span>
+                  <input type="password" class="form-control" formControlName="password" placeholder="Senha">
+                </div>
+                <div class="form-group row">
+                  <div class="col-xs-6">
+                    <button type="button" class="btn btn-primary px-2" (click)="login()">Entrar</button>
+                  </div>
+                  <div class="col-xs-6 text-xs-right">
+                    <button type="button" class="btn btn-link px-0">Esqueceu sua senha?</button>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-xs-12">
+                    <p class="text-muted">Ou entre com uma rede social</p>
+                    <button class="btn btn-google-plus" type="button" (click)="loginWithSocial(3)">
+                      <span>Google+</span>
+                    </button>
+                    <button class="btn btn-facebook" type="button" (click)="loginWithSocial(2)">
+                      <span>Facebook</span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="card card-inverse card-primary py-3 hidden-md-down" style="width:44%">
+            <div class="card-block text-xs-center">
+              <div>
+                <h2>Registrar</h2>
+                <p>Registre agora e aproveite todas as funcionalidades do <strong>balance</strong>. Um sistema de
+                  prontuário eletrônico online.</p>
+                <button type="button" class="btn btn-primary active mt-1">Registre-se agora</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

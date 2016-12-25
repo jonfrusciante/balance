@@ -1,0 +1,98 @@
+<div class="animated fadeIn">
+  <template #patientTemplate let-r="result" let-t="term">
+    <span class="text-muted">{{r.$key}}</span> - {{ r.name }}
+  </template>
+
+  <form [formGroup]="myForm" class="form-horizontal">
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card">
+          <div class="card-header">
+            <strong>Identificação</strong>
+          </div>
+          <div class="card-block">
+
+            <div class="row">
+              <div class="col-md-10">
+                <div class="input-group" [ngClass]="{'has-success': isPatientValid() }">
+                  <label class="form-form-control-label" for="name">Paciente</label>
+                  <input type="text" formControlName="name" id="name" class="form-control"
+                         [ngbTypeahead]="search" [resultTemplate]="patientTemplate"
+                         [inputFormatter]="formatter" (selectItem)="selectPatient($event)">
+                </div>
+              </div>
+            </div>
+
+            <!--Leito -->
+            <div class="row">
+              <div class="form-group">
+                <div class="col-sm-3">
+                  <label for="leito">Leito</label>
+                  <select id="leito" class="form-control" formControlName="leito">
+                    <option *ngFor="let leito of leitos | async" value="{{leito?.$key}}">Leito {{leito?.$key}}</option>
+                  </select>
+                  <small class="form-text text-muted">Somente os leitos disponíveis são listados.</small>
+                </div>
+                <div class="col-sm-4">
+                  <label for="tipo">Tipo da internação</label>
+                  <select name="tipo" formControlName="tipo" id="tipo" class="form-control">
+                    <option *ngFor="let tipo of tipos" value="{{tipo}}">{{tipo}}</option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <label for="procedencia">Procedencia</label>
+                  <select name="convenio" id="procedencia" formControlName="procedencia" class="form-control">
+                    <option *ngFor="let proc of procedencia; let i = index" [value]="proc">{{proc}}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!--Convenio -->
+            <div class="row">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for="convenio">Convenio</label>
+                  <select name="convenio" id="convenio" class="form-control" formControlName="convenio">
+                    <option *ngFor="let convenio of convenios | async" value="{{convenio.$key}}">{{convenio.$value}}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-sm-4">
+                  <label for="especialidade">Especialidade</label>
+                  <select name="especialidade" formControlName="especialidade" id="especialidade" class="form-control">
+                    <option *ngFor="let espec of especialidades | async" value="{{espec.$value}}">{{espec.$value}}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!--Horario de entrada -->
+            <div class="row">
+              <div class="form-group">
+                <div class="col-sm-4">
+                  <label for="hr_entrada">Horario de entrada</label>
+                  <input type="datetime" name="convenio" id="hr_entrada" class="form-control">
+                </div>
+              </div>
+            </div>
+
+
+          </div> <!-- END - CardBlock-->
+        </div><!-- END - Card-->
+
+      </div><!-- END - col-->
+    </div><!-- END - row-->
+
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary mb-2" [disabled]="!myForm.valid" (click)="internar()">Internar paciente
+        </button>
+      </div><!-- END - col-->
+    </div><!-- END - row-->
+  </form>
+
+</div>

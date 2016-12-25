@@ -1,0 +1,23 @@
+.profile-image {
+  width: 120px;
+  float: left;
+
+  img {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.no-margins {
+  margin: 0 !important;
+}
+
+img.circle-border {
+  border: 6px solid #FFFFFF;
+  border-radius: 50%;
+}
+
+.profile-info {
+  margin-left: 120px;
+  display: block;
+}

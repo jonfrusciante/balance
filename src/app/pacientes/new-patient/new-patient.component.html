@@ -1,0 +1,219 @@
+<div class="animated fadeIn">
+  <form [formGroup]="myForm" class="form-horizontal">
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card">
+          <div class="card-header">
+            <strong>Identificação</strong>
+          </div>
+          <div class="card-block">
+
+            <!--Nome do paciente-->
+            <div class="form-group">
+              <label for="name">Nome</label>
+              <input type="text" formControlName="name" id="name" class="form-control">
+            </div>
+
+            <!--Nascimento do paciente-->
+            <div class="form-group row">
+              <div class="col-sm-3">
+                <label for="birth">Nascimento</label>
+                <div dropdown>
+                  <div class="input-group">
+                    <input id="birth" type="text" placeholder="dd/mm/aaaa" formControlName="birth" ngbDatepicker
+                           [minDate]="{day: 1, month: 1, year: 1900}"
+                           #birth="ngbDatepicker" class="form-control">
+                    <span class="input-group-addon" (click)="birth.toggle()"><i class="fa fa-calendar"></i></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--Sexo -->
+            <div class="form-group row">
+              <div class="col-sm-2">
+                <label>Sexo</label>
+                <select class="form-control" formControlName="gender">
+                  <option *ngFor="let g of genders" value="{{g}}">{{g}}</option>
+                </select>
+              </div>
+            </div>
+
+            <!--Raça -->
+            <div class="form-group row">
+              <div class="col-sm-2">
+                <label>Raça</label>
+                <select class="form-control" formControlName="raca">
+                  <option *ngFor="let r of racas" value="{{r}}">{{r}}</option>
+                </select>
+              </div>
+            </div>
+
+          </div> <!-- END - CardBlock-->
+        </div><!-- END - Card-->
+
+      </div><!-- END - col-->
+    </div><!-- END - row-->
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card">
+          <div class="card-header"><strong>Documentação</strong></div>
+
+          <div class="card-block">
+
+            <!--CPF -->
+            <div class="form-group">
+              <label for="cpf">CPF</label>
+              <input type="text" formControlName="cpf" id="cpf" class="form-control"
+                     [textMask]="{mask: cpfMask, guide: false}">
+            </div>
+
+            <div class="row" formGroupName="rg">
+              <!--RG -->
+              <div class="form-group col-sm-6">
+                <label for="rg_number">RG</label>
+                <input type="text" formControlName="number" id="rg_number" class="form-control">
+              </div>
+
+              <!--Orgão Emissor-->
+              <div class="form-group col-sm-3">
+                <label for="rg_orgao">Orgão Emissor</label>
+                <input type="text" formControlName="orgao" id="rg_orgao" class="form-control">
+              </div>
+
+              <!--UF-->
+              <div class="form-group col-sm-3">
+                <label for="rg_uf">Estado</label>
+                <select formControlName="uf" class="form-control" id="rg_uf" #state>
+                  <option *ngFor="let uf of ufs" value="{{uf.Sigla}}">{{uf.Sigla}}</option>
+                </select>
+              </div>
+            </div><!--/row-->
+
+            <!--Nome da mãe-->
+            <div class="form-group">
+              <label>Nome da mãe</label>
+              <input type="text" formControlName="mother" class="form-control">
+            </div>
+
+            <!--Nome do pai-->
+            <div class="form-group">
+              <label>Nome do pai</label>
+              <input type="text" formControlName="father" class="form-control">
+            </div>
+
+            <!--Naturalidade -->
+            <div class="form-group">
+              <label>Naturalidade</label>
+              <input type="text" formControlName="naturalidade" class="form-control">
+            </div>
+
+          </div> <!-- END - CardBlock-->
+        </div><!-- END - Card-->
+
+      </div><!-- END - col-->
+    </div><!-- END - row-->
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card">
+          <div class="card-header">
+            <strong>Endereços</strong>
+            <button class="btn btn-default btn-sm pull-right" (click)="addAddress()"><i class="fa fa-plus"></i>
+              Adicionar
+            </button>
+          </div>
+          <div class="card-block" formArrayName="addresses">
+
+            <!--Endereço -->
+            <div *ngFor="let address of myForm.controls.addresses.controls; let i=index; let last = last">
+              <div [formGroupName]="i">
+                <div class="row">
+                  <div class="form-group col-sm-2">
+                    <label>CEP</label>
+                    <input type="text" formControlName="cep" maxlength="8" class="form-control" autocomplete="off">
+                  </div>
+                  <div class="form-group col-sm-3">
+                    <label>Tipo</label>
+                    <select formControlName="tipo" class="form-control">
+                      <option>Residencial</option>
+                      <option>Comercial</option>
+                      <option>Correspondência</option>
+                      <option>Cobrança</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-7">
+                    <label>Logradouro</label>
+                    <input type="text" formControlName="logradouro" class="form-control">
+                  </div>
+                  <div class="form-group col-sm-2">
+                    <label>Número</label>
+                    <input type="text" formControlName="numero" class="form-control">
+                  </div>
+                  <div class="form-group col-sm-3">
+                    <label>Complemento</label>
+                    <input type="text" formControlName="complemento" class="form-control">
+                  </div>
+                </div><!--ROW -->
+                <div class="row">
+                  <div class="form-group col-sm-5">
+                    <label>Bairro</label>
+                    <input type="text" formControlName="bairro" class="form-control" placeholder="Bairro">
+                  </div>
+                  <div class="form-group col-sm-5">
+                    <label>Município</label>
+                    <input type="text" formControlName="localidade" class="form-control" placeholder="Município">
+                  </div>
+                  <div class="form-group col-sm-2">
+                    <label>UF</label>
+                    <select formControlName="uf" class="form-control">
+                      <option *ngFor="let uf of ufs" value="{{uf.Sigla}}">{{uf.Sigla}}</option>
+                    </select>
+                  </div>
+                </div><!--ROW -->
+              </div>
+              <hr *ngIf="!last" class="hr-line-dashed"/>
+            </div>
+
+          </div> <!-- END - CardBlock-->
+        </div><!-- END - Card-->
+
+      </div><!-- END - col-->
+    </div><!-- END - row-->
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="card">
+          <div class="card-header">
+            <strong>Contato</strong>
+          </div>
+          <div class="card-block">
+
+            <!--Telefone -->
+            <div class="form-group row">
+              <label class="col-md-2 form-control-label">Contato</label>
+              <div class="col-md-3"><input type="text" formControlName="cont_telefone" class="form-control"
+                                           [textMask]="{mask: telMask}"></div>
+            </div>
+
+          </div> <!-- END - CardBlock-->
+        </div><!-- END - Card-->
+
+      </div><!-- END - col-->
+    </div><!-- END - row-->
+
+    <div class="row">
+      <div class="col-md-12">
+        <button class="btn btn-primary mb-2" (click)="register()">Cadastrar paciente</button>
+      </div><!-- END - col-->
+    </div><!-- END - row-->
+  </form>
+</div>

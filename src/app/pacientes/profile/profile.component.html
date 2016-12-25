@@ -1,0 +1,107 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="card">
+        <div class="card-block">
+
+          <!--Card Block-->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="profile-image">
+                <img src="img/a4.jpg" class="img-circle circle-border" alt="profile">
+              </div>
+              <div class="profile-info">
+                <div>
+                  <h4>{{ (patient | async)?.name }}<br/>
+                    <small class="text-muted">{{ (patient | async)?.birth | amTimeAgo:true }}</small>
+                  </h4>
+                  <h5><span class="tag tag-danger">Internado</span></h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <table class="table table-sm mb-0">
+                <tbody>
+                <tr>
+                  <td>
+                    <strong>5</strong> Atendimentos
+                  </td>
+                  <td>
+                    <strong>2</strong> Internações
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>5</strong> Exames
+                  </td>
+                  <td>
+                    <strong>1</strong> Procedimentos
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>154</strong> Tags
+                  </td>
+                  <td>
+                    <strong>32</strong> Friends
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-primary">Novo atendimento</button>
+              <button class="btn btn-primary">Internar</button>
+            </div>
+          </div>
+          <!--End Card Block-->
+        </div>
+        <div class="card-footer p-0">
+          <ul>
+            <li class="b-r-1 py-1">
+              <strong>Linha do tempo</strong>
+            </li>
+            <li class="b-r-1 py-1">
+              <strong>Evolução</strong>
+            </li>
+            <li class="b-r-1 py-1">
+              <strong>Exames</strong>
+            </li>
+            <li dropdown class="py-1" aria-haspopup="true">
+              <div dropdownToggle><strong>Gerenciar</strong></div>
+              <div class="dropdown-menu" dropdownMenu>
+                <a class="dropdown-item">Action</a>
+                <a class="dropdown-item">Another action</a>
+                <a class="dropdown-item">Something else here</a>
+                <a class="dropdown-item">Separated link</a>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-lg-3">
+      <app-vitals-widget></app-vitals-widget>
+    </div>
+    <!--/col-->
+    <div class="col-sm-6 col-lg-3">
+      <app-vitals-widget></app-vitals-widget>
+    </div>
+    <!--/col-->
+    <div class="col-sm-6 col-lg-3">
+      <app-vitals-widget></app-vitals-widget>
+    </div>
+    <!--/col-->
+    <div class="col-sm-6 col-lg-3">
+      <app-vitals-widget></app-vitals-widget>
+    </div>
+    <!--/col-->
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

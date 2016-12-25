@@ -1,0 +1,10 @@
+<div class="activity">
+  <div class="mt-1 activity-block">
+    <div class="float-xs-right text-muted">{{ timeAgo | async }}</div>
+    <div class="profile-image">
+      <img [src]="activity.getIcon()" class="rounded-circle">
+    </div>
+    <h5>{{ activity.getTitle() }}</h5>
+    <p>{{ activity.getMessage() }}</p>
+  </div>
+</div>

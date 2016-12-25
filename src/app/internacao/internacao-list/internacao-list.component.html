@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-header">DataTable</div>
+  <div class="card-block">
+    <div class="row mb-1">
+      <form [formGroup]="myForm">
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Procurar"/>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <select class="form-control" formControlName="filter">
+            <option value="occupped">Ocupados</option>
+            <option value="livre">Livre</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary pull-right" (click)="newInternation()">Nova internação</button>
+        </div>
+      </form>
+    </div>
+    <table class="table table-hover table-outline table-striped mb-0 hidden-sm-down">
+      <thead class="thead-default">
+      <tr>
+        <th *ngFor="let field of fields" [ngClass]="{'text-xs-center': field.center }">{{ field.label }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let leito of leitos" style="cursor: pointer" (click)="goPatient(leito.pid)">
+        <td class="text-xs-center">
+          <div class="avatar">
+            <strong>{{ leito.$key }}</strong>
+          </div>
+        </td>
+        <td>
+          <div>{{ (leito.patient | async)?.name }}</div>
+          <div class="small text-muted">
+            Internado em {{ leito.when }}
+          </div>
+        </td>
+        <td class="text-xs-center">
+          {{ (leito.patient | async)?.birth | amTimeAgo:true }}
+        </td>
+        <td>
+          {{ (leito.data | async)?.especialidade }}
+        </td>
+        <td class="text-xs-center">
+          <div class="small text-muted">Evento</div>
+          <strong>tempo atrás</strong>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

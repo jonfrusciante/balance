@@ -1,0 +1,44 @@
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">DataTable</div>
+    <div class="card-block">
+      <div class="row mb-1">
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" [(ngModel)]="filterQuery" placeholder="Procurar"/>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <button class="btn btn-primary pull-right" (click)="newPatient()">Cadastrar novo paciente</button>
+        </div>
+      </div>
+      <p *ngIf="loadingState.loading">{{ loadingState.msg }}</p>
+      <table *ngIf="!loadingState.loading" class="table table-striped" [mfData]="patientList" #mf="mfDataTable" [mfRowsOnPage]="10">
+        <thead>
+        <tr>
+          <th>
+          <mfDefaultSorter by="name">Name</mfDefaultSorter>
+        </th>
+          <th>
+            <mfDefaultSorter by="Nascimento">Name</mfDefaultSorter>
+          </th>
+          <th>
+            <mfDefaultSorter by="birth">Birth</mfDefaultSorter>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let patient of mf.data" (click)="goToPatient(patient)">
+          <td>{{ patient.name }}</td>
+          <td>{{ patient.birth | date }}</td>
+          <td>{{ patient.birth | amTimeAgo:true }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <button type="button" (click)="testAlert()">Alerta</button>
+
+</div>

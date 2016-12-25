@@ -1,0 +1,20 @@
+<template ngbModalContainer #contentDialog let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Escolha um paciente</h4>
+  </div>
+  <div class="modal-body">
+    <form>
+
+      <div class="form-group">
+        <input type="text" id="name" class="form-control" placeholder="Paciente">
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</template>
